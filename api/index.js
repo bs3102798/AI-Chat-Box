@@ -1,10 +1,10 @@
 const API_URL = "https://api.openai.com/v1/chat/completions"
-const API_KEY = 'test'
+const API_KEY = "key";
+
 
 
 const PromptInput = document.getElementById('promptInput');
 const generateBtn = document.getElementById('generateBtn');
-const StopBtn = document.getElementById('StopeBtn');
 const resultText = document.getElementById('resultText');
 
 const generate = async () => {
