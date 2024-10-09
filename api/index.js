@@ -1,4 +1,6 @@
 const API_URL = "https://api.openai.com/v1/chat/completions"
+const API_KEY = 'test'
+
 
 const PromptInput = document.getElementById('promptInput');
 const generateBtn = document.getElementById('generateBtn');
@@ -25,10 +27,23 @@ const generate = async () => {
                 messages: [{ role: "user", content: PromptInput.value }],
             }),
 
-        })
+        });
+        const data = await response.json();
+        console.log(data.choices[0].message.content);
+        resultText.innerText = data.choices[0].message.content
     } catch (error) {
+        resultText.innerText = 'error occured while generating.'
+        console.log('ERROR:', error)
 
     } finally {
+        generate.disabled = false
 
     }
 }
+
+generateBtn.addEventListener("click", generate);
+PromptInput.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        generate();
+    }
+})
